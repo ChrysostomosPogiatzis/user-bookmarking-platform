@@ -19,10 +19,12 @@ class BookmarkController extends Controller
         $user = Auth::user(); // Get the currently authenticated user
 
         // Retrieve bookmark associated with the logged-in user
-        $bookmarks = Bookmark::where('user_id', $user->id)->get();
+        $bookmarks = Bookmark::where('user_id', $user->id)
+    ->orderBy('title', 'asc')
+    ->get();
 
 
-        return view('bookmarks', compact('bookmarks'));
+        return view('bookmarks.bookmarks', compact('bookmarks'));
     }
 
     /**
@@ -32,7 +34,7 @@ class BookmarkController extends Controller
      */
     public function create()
     {
-         return view('bookmarks_create');
+         return view('bookmarks.bookmarks_create');
     }
 
     /**
@@ -68,17 +70,6 @@ class BookmarkController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\bookmark  $bookmark
-     * @return \Illuminate\Http\Response
-     */
-    public function show(bookmark $bookmark)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\bookmark  $bookmark
@@ -91,7 +82,7 @@ class BookmarkController extends Controller
       if (auth()->id() !== $bookmark->user_id) {
          abort(403); // Unauthorized access
      }
-      return view('bookmarks_edit', compact('bookmark'));
+      return view('bookmarks.bookmarks_edit', compact('bookmark'));
     }
 
     /**
@@ -131,7 +122,7 @@ class BookmarkController extends Controller
       if (auth()->id() !== $bookmark->user_id) {
          abort(403); // Unauthorized access
      }
-      return view('bookmarks_delete', compact('bookmark'));
+      return view('bookmarks.bookmarks_delete', compact('bookmark'));
     }
 
     /**

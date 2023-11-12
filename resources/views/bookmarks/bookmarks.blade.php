@@ -30,10 +30,10 @@
             <td>{{ $bookmark->url }}</td>
             <td>
                 <!-- Add your edit link/button here -->
-                <a href="/bookmarks/{{ $bookmark->id }}/edit" >edit</a>
+                <a class='btn btn-info text-white' href="/bookmarks/{{ $bookmark->id }}/edit" >Edit</a>
             </td>
             <td>  
-            <a href="/bookmarks/{{ $bookmark->id }}/delete" >Delete</a>
+            <a class='btn btn-danger text-white' href="/bookmarks/{{ $bookmark->id }}/delete" >Delete</a>
             </td>
         </tr>
         @endforeach
