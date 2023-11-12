@@ -8,13 +8,12 @@
                 <div class="card-header">{{ __('Dashboard') }}</div>
 
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
+                <div class="col-md-12 align-self-center">
+            @if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
                     <table class="table">
     <thead>
         <tr>
@@ -34,7 +33,7 @@
                 <a href="/bookmarks/{{ $bookmark->id }}/edit" >edit</a>
             </td>
             <td>  
-             
+            <a href="/bookmarks/{{ $bookmark->id }}/delete" >Delete</a>
             </td>
         </tr>
         @endforeach

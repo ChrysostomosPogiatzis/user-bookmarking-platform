@@ -22,14 +22,15 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/bookmarks', BookmarkController::class. '@index')->name('bookmarks');
-//create a new contacts
+ 
  
 Route::get('/bookmarks/create', BookmarkController::class. '@create')->name('bookmarksCreate');
-//save a contatc
+ 
 Route::post('/bookmarks/store', BookmarkController::class. '@store')->name('bookmarksStore');
 
-Route::get('/bookmarks/{contact}/edit', BookmarkController::class. '@edit')->name('bookmarksEdit');
-// updates a contact
-Route::put('/bookmarks/{contact}',  BookmarkController::class. '@update')->name('bookmarksUpdate');
-// deletes a contact
-Route::delete('/bookmarks/{contact}',  BookmarkController::class. '@delete')->name('bookmarksDelete');
+Route::get('/bookmarks/{bookmark}/edit', BookmarkController::class. '@edit')->name('bookmarksEdit');
+ 
+Route::put('/bookmarks/{bookmark}',  BookmarkController::class. '@update')->name('bookmarksUpdate');
+ 
+Route::get('/bookmarks/{bookmark}/delete',  BookmarkController::class. '@delete')->name('bookmarksDelete');
+Route::delete('/bookmarks/{bookmark}',  BookmarkController::class. '@delete_confirmed')->name('bookmarksDelete_confirmed');
