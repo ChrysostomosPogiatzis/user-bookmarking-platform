@@ -32,7 +32,7 @@ class BookmarkController extends Controller
      */
     public function create()
     {
-        //
+         return view('bookmarks_create');
     }
 
     /**
@@ -43,7 +43,28 @@ class BookmarkController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = Auth::user(); // Get the currently authenticated user
+
+        $validator = Validator::make($request->all(), [
+            'title' => 'required|string|max:15',
+            'url' => 'required|url',
+           
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+            // This redirects back to the form with validation errors and input data.
+        }
+
+        $bookmark = new Bookmark([
+            'title' => $request->title,
+            'url' => $request->url,
+            'user_id' =>$user->id,
+        ]);
+
+        $bookmark->save();
+        return redirect()->route('bookmarks')
+            ->with('success', 'Bookmark created successfully.');
     }
 
     /**
@@ -63,9 +84,14 @@ class BookmarkController extends Controller
      * @param  \App\Models\bookmark  $bookmark
      * @return \Illuminate\Http\Response
      */
-    public function edit(bookmark $bookmark)
+    public function edit($id)
     {
-        //
+  
+      $bookmark= Bookmark::find($id);
+      if (auth()->id() !== $bookmark->user_id) {
+         abort(403); // Unauthorized access
+     }
+      return view('bookmarks_edit', compact('bookmark'));
     }
 
     /**

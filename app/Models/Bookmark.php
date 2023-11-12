@@ -10,7 +10,8 @@ class Bookmark extends Model
     use HasFactory;
     protected $fillable = [
         'title',
-        'url'
+        'url',
+        'user_id'
     ];
    
 }

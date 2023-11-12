@@ -31,16 +31,27 @@
             <td>{{ $bookmark->url }}</td>
             <td>
                 <!-- Add your edit link/button here -->
-                 
+                <a href="/bookmarks/{{ $bookmark->id }}/edit" >edit</a>
             </td>
-            <td>
-                <!-- Add your delete link/button here -->
+            <td>  
              
             </td>
         </tr>
         @endforeach
     </tbody>
 </table>
+<div class="
+                col-md-7
+                justify-content-end
+                align-self-center
+                d-none d-md-flex
+              ">
+              <div class="d-flex">
+
+
+                <a class="btn btn-success" href="{{ URL::route('bookmarksCreate') }}">Create New BookMark</a>
+
+              </div>
                 </div>
             </div>
         </div>

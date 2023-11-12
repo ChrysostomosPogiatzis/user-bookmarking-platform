@@ -23,10 +23,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/bookmarks', BookmarkController::class. '@index')->name('bookmarks');
 //create a new contacts
-Route::get('/bookmarks/create', BookmarkController::class. '@create')->name('bookmarksCreate');
-//save a contatc
-Route::post('/bookmarks/store', BookmarkController::class. '@store')->name('bookmarksStore');
-
+ 
 Route::get('/bookmarks/create', BookmarkController::class. '@create')->name('bookmarksCreate');
 //save a contatc
 Route::post('/bookmarks/store', BookmarkController::class. '@store')->name('bookmarksStore');
